@@ -34,10 +34,10 @@
 			.attr("transform", "translate(40, 0)");
 		
 		var tree = d3.layout.tree()
-			.size([300,150]);
+			.size([300,200]);
 		
 		var diagonal = d3.svg.diagonal()
-			.projection(function(d) { return [d.y, d.x]; });
+			.projection(function(d) { return [d.x, (-d.y + 280)]; });
 		
 		var nodes = tree.nodes(treeData);
 		var links = tree.links(nodes);
@@ -55,7 +55,7 @@
 		var node = vis.selectAll("g.node")
 			.data(nodes)
 			.enter().append("svg:g")
-			.attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
+			.attr("transform", function(d) { return "translate(" + d.x + "," + (-d.y + 280) + ")"; });
 		
 		node.append("svg:circle")
 			.attr("r", 3.5);
