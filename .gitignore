@@ -1,0 +1,9 @@
+d3.v3.zip
+_ReSharper.*
+*.ReSharper.user
+*.DotSettings.user
+*.suo
+bin
+obj
+build/
+src/packages/
