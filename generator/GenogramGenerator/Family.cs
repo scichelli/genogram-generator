@@ -76,12 +76,12 @@ namespace GenogramGenerator
             Set(person, RelationshipType.Parent);
         }
 
-        public void TheChildOf(Person mother, Person father)
+        public void TheChildOf(Person parent1, Person parent2)
         {
             var child = A;
-            A = mother;
+            A = parent1;
             Set(child, RelationshipType.Parent);
-            father.Is.TheParentOf(child);
+            parent2.Is.TheParentOf(child);
         }
 
         public void MarriedTo(Person person)
