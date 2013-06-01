@@ -69,7 +69,7 @@ namespace GenogramGenerator
         public void FindSiblings()
         {
             var rosesSiblings = kennedy.SiblingsOf(rose);
-            CollectionAssert.AreEquivalent(new List<Person>{fdaughter2, fson1, fson2, fdaughter3, fson3}, rosesSiblings);
+            Assert.That(rosesSiblings, Is.EquivalentTo(new List<Person> { fdaughter2, fson1, fson2, fdaughter3, fson3 }));
         }
 
         [Test]
@@ -78,11 +78,26 @@ namespace GenogramGenerator
             Assert.That(kennedy.Members().Count(), Is.EqualTo(people.Count));
         }
 
-        //finding children of two parents
+        [Test]
+        public void FindChildrenOfTwoParents()
+        {
+            var children = kennedy.ChildrenOf(new List<Person> {ethyl, robert});
+            Assert.That(children, Is.EquivalentTo(new List<Person>{rdaughter1, rson1, rson2, rson3, rdaughter2, rson4, rdaugher3, rson5, rson6, rson7, rdaugher4}));
+        }
 
-        //what if you ask for the children of two people who didn't have children together? you'll get false results.
+        [Test]
+        public void FindChildrenOfOneParent()
+        {
+            var children = kennedy.ChildrenOf(robert);
+            Assert.That(children, Is.EquivalentTo(new List<Person> { rdaughter1, rson1, rson2, rson3, rdaughter2, rson4, rdaugher3, rson5, rson6, rson7, rdaugher4 }));
+        }
 
-        //finding children of a person
+        [Test]
+        public void AskingForTheChildrenOfPeopleWhoDidNotHaveChildrenTogetherShouldGiveEmptyList()
+        {
+            var children = kennedy.ChildrenOf(new List<Person> {rose, ethyl});
+            Assert.That(children, Is.Empty);
+        }
 
         private void InitializePeople()
         {
