@@ -54,6 +54,11 @@ namespace GenogramGenerator
         public Family Family { get; set; }
 
         public Relationship Is { get { return Family.Add(this); } }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 
     public class Relationship
