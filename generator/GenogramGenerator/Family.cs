@@ -25,14 +25,17 @@ namespace GenogramGenerator
 
         public IEnumerable<Person> ChildrenOf(IEnumerable<Person> parents)
         {
-            return
-                _relationships.Where(r => r.Type == RelationshipType.Parent && parents.Contains(r.A)).Select(r => r.B)
-                    .Distinct();
+            if (!parents.Any())
+                return Enumerable.Empty<Person>();
+
+            return parents.Skip(1)
+                .Aggregate(ChildrenOf(parents.First()),
+                           (current, parent) => current.Intersect(ChildrenOf(parent)));
         }
 
         public IEnumerable<Person> ChildrenOf(Person parent)
         {
-            return ChildrenOf(new List<Person> {parent});
+            return _relationships.Where(r => r.Type == RelationshipType.Parent && r.A == parent).Select(r => r.B);
         }
         
         public Person Add(string name)
