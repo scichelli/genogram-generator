@@ -1,7 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenogramGenerator", "GenogramGenerator.csproj", "{764B27DE-0BF3-439A-905E-058DAFE9D94C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenogramGenerator.Tests", "GenogramGenerator.Tests\GenogramGenerator.Tests.csproj", "{A2595E60-9687-4046-9794-E6234113666B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +15,10 @@ Global
 		{764B27DE-0BF3-439A-905E-058DAFE9D94C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{764B27DE-0BF3-439A-905E-058DAFE9D94C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{764B27DE-0BF3-439A-905E-058DAFE9D94C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2595E60-9687-4046-9794-E6234113666B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2595E60-9687-4046-9794-E6234113666B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2595E60-9687-4046-9794-E6234113666B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2595E60-9687-4046-9794-E6234113666B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
