@@ -1,0 +1,104 @@
+<html>
+<head>
+	<title>Genogram</title>
+	<script src="d3.v3/d3.v3.min.js" charset="utf-8"></script>
+</head>
+<body>
+	
+	<script language="javascript" type="text/javascript">
+	
+	var size = {
+		width: 1400, 
+		height: 500
+	}
+		var familyData = {
+			name: "me",
+			gender: "f",
+			mother: {
+				name: "Mom",
+				gender: "f",
+				mother: {
+					name: "MomsMom",
+					gender: "f"
+				},
+				father: {
+					name: "MomsDad",
+					gender: "m",
+					siblings: [
+						{
+							name: "Grandpa's sister",
+							gender: "f",
+						},
+						{
+							name: "Grandpa's brother",
+							gender: "m",
+						}
+					]
+				}
+			},
+			father: {
+				name: "Dad",
+				gender: "m",
+				siblings: [
+					{
+						name: "Aunt",
+						gender: "f",
+						children: [
+							{
+								name: "Cousin1",
+								gender: "f",
+								spouse: 
+									{
+										name: "Cousin1Husband",
+										gender: "m"
+									},
+								children: [
+									{
+										name: "Cousin1Son1",
+										gender: "m"
+									},
+									{
+										name: "Cousin1Son2",
+										gender: "m"
+									}
+								]
+							},
+							{
+								name: "Cousin2",
+								gender: "m"
+							}
+						],
+						spouses: [
+							{
+								name: "Uncle",
+								gender: "m",
+								status: "Divorced"
+							}
+						]
+					}
+				]
+			}
+		}
+		
+		var tree = d3.layout.tree()
+			.sort(null)
+			.size([size.width, size.height])
+			.children(function(d)
+			{
+				return (!d.contents || d.contents.length === 0) ? null : d.contents;
+			});
+		
+		var nodes = tree.nodes(familyData);
+		var links = tree.links(nodes);
+		
+		//rendering the tree
+		var layoutRoot = d3.select("body")
+			.append("svg:svg").attr("width", size.width).attr("height", size.height)
+			.append("svg:g")
+			.attr("class", "container");
+		
+		//start here...
+		var link = d3
+	</script>
+</body>
+</html>
