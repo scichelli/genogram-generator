@@ -7,6 +7,8 @@ namespace GenogramGenerator.Core
     {
         private readonly List<Relationship> _relationships = new List<Relationship>();
 
+        public IEnumerable<Relationship> Relationships { get { return _relationships; } } 
+
         public IEnumerable<Person> Members()
         {
             return _relationships.Select(r => r.A).Union(_relationships.Select(r => r.B));
