@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GenogramGenerator")]
+[assembly: AssemblyTitle("GenogramGenerator.Core")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("GenogramGenerator")]
+[assembly: AssemblyProduct("GenogramGenerator.Core")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("bec0ae7c-e37f-4c33-9240-5d3a76794301")]
+[assembly: Guid("58ebef1c-814c-412c-8127-e0527c848430")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace GenogramGenerator
+namespace GenogramGenerator.Core
 {
     public class Family
     {
@@ -37,15 +37,15 @@ namespace GenogramGenerator
         {
             return _relationships.Where(r => r.Type == RelationshipType.Parent && r.A == parent).Select(r => r.B);
         }
-        
+
         public Person Add(string name)
         {
-            return new Person {Name = name, Family = this};
+            return new Person { Name = name, Family = this };
         }
-        
+
         public Relationship Add(Person person)
         {
-            var relationship = new Relationship {A = person};
+            var relationship = new Relationship { A = person };
             _relationships.Add(relationship);
             return relationship;
         }

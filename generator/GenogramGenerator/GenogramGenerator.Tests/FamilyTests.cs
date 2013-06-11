@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using GenogramGenerator.Core;
 using Should;
 
 namespace GenogramGenerator.Tests
