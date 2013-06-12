@@ -22,18 +22,18 @@ namespace GenogramGenerator.Tests
             InitializePeople();
 
             john.Is.TheChildOf(rose, joseph);
-            john.Is.MarriedTo(jackie);
+            john.Is.MarriedTo(jackie)
+                .AndTheyAreTheParentsOf(miscarriage, daughter1, daughter2, son1, son2);
             jackie.Is.MarriedTo(jackiesSecondHusband);
-            new[]{john, jackie}.AreTheParentsOf(miscarriage, daughter1, daughter2, son1, son2);
-            new[]{rose, joseph}.AreTheParentsOf(joe, rosemary, kathleen, eunice, pat, robert, jean, ted);
+            joseph.Is.MarriedTo(rose)
+                .AndTheyAreTheParentsOf(joe, rosemary, kathleen, eunice, pat, robert, jean, ted);
             kathleen.Is.MarriedTo(kathleensHusband);
             kathleen.Is.MarriedTo(kathleensSecondHusband);
-            robert.Is.MarriedTo(ethyl);
-            new[]{ethyl, robert}.AreTheParentsOf(rdaughter1, rson1, rson2, rson3, rdaughter2, rson4, rdaugher3, rson5, rson6, rson7, rdaugher4);
-            joseph.Is.MarriedTo(rose);
+            robert.Is.MarriedTo(ethyl)
+                .AndTheyAreTheParentsOf(rdaughter1, rson1, rson2, rson3, rdaughter2, rson4, rdaugher3, rson5, rson6, rson7, rdaugher4);
             new[]{patrick, patricksWife}.AreTheParentsOf(joseph, pdaughter1, pdaughter2);
-            fitz.Is.MarriedTo(mary);
-            new[]{mary, fitz}.AreTheParentsOf(rose, fdaughter2, fson1, fson2, fdaughter3, fson3);
+            fitz.Is.MarriedTo(mary)
+                .AndTheyAreTheParentsOf(rose, fdaughter2, fson1, fson2, fdaughter3, fson3);
             gloria.Is.TheRomanticPartnerOf(joseph);
             toodles.Is.TheRomanticPartnerOf(fitz);
         }

@@ -17,9 +17,9 @@ namespace GenogramGenerator.Core
             }
         }
 
-        public void TheParentOf(Person person)
+        public Relationship TheParentOf(Person person)
         {
-            Set(person, RelationshipType.Parent);
+            return Set(person, RelationshipType.Parent);
         }
 
         public void TheChildOf(Person parent1, Person parent2)
@@ -30,25 +30,31 @@ namespace GenogramGenerator.Core
             parent2.Is.TheParentOf(child);
         }
 
-        public void MarriedTo(Person person)
+        public Relationship MarriedTo(Person person)
         {
-            Set(person, RelationshipType.Spouse);
+            return Set(person, RelationshipType.Spouse);
         }
 
-        public void DivorcedFrom(Person person)
+        public Relationship DivorcedFrom(Person person)
         {
-            Set(person, RelationshipType.Divorced);
+            return Set(person, RelationshipType.Divorced);
         }
 
-        public void TheRomanticPartnerOf(Person person)
+        public Relationship TheRomanticPartnerOf(Person person)
         {
-            Set(person, RelationshipType.Romance);
+            return Set(person, RelationshipType.Romance);
         }
 
-        private void Set(Person b, RelationshipType type)
+        public void AndTheyAreTheParentsOf(params Person[] children)
+        {
+            new[]{A, B}.AreTheParentsOf(children);
+        }
+
+        private Relationship Set(Person b, RelationshipType type)
         {
             B = b;
             Type = type;
+            return this;
         }
     }
 
