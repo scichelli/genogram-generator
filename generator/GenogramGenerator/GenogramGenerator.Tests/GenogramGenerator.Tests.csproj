@@ -39,6 +39,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FamilyExtensionsTests.cs" />
     <Compile Include="FamilyTests.cs" />
     <Compile Include="FamilyWriterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

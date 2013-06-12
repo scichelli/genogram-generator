@@ -45,6 +45,11 @@ namespace GenogramGenerator.Core
             return new Person { Name = name, Family = this };
         }
 
+        public Person Add()
+        {
+            return Add(string.Empty);
+        }
+
         public Relationship Add(Person person)
         {
             var relationship = new Relationship { A = person };

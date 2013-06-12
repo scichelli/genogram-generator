@@ -37,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Family.cs" />
+    <Compile Include="FamilyExtensions.cs" />
     <Compile Include="Writer\Flattener.cs" />
     <Compile Include="Writer\FamilyWriter.cs" />
     <Compile Include="Person.cs" />
