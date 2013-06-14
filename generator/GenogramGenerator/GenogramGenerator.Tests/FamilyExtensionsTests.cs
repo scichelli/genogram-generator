@@ -22,28 +22,28 @@ namespace GenogramGenerator.Tests
 
             parents.AreTheParentsOf(_brother, _sister, _cat);
 
-            _us.ChildrenOf(parents).ShouldEqual(_expectedChildren);
+            _us.ChildrenOf(parents).ShouldBeEquivalentTo(_expectedChildren);
         }
 
         public void ChainAMarriageIntoParenthood()
         {
             _dad.Is.MarriedTo(_mom).AndTheyAreTheParentsOf(_brother, _sister, _cat);
 
-            _us.ChildrenOf(_dad).ShouldEqual(_expectedChildren);
+            _us.ChildrenOf(_dad).ShouldBeEquivalentTo(_expectedChildren);
         }
 
         public void ChainADivorceIntoParenthood()
         {
             _dad.Is.DivorcedFrom(_mom).AndTheyAreTheParentsOf(_brother, _sister, _cat);
 
-            _us.ChildrenOf(_dad).ShouldEqual(_expectedChildren);
+            _us.ChildrenOf(_dad).ShouldBeEquivalentTo(_expectedChildren);
         }
 
         public void ChainARomanceIntoParenthood()
         {
             _dad.Is.TheRomanticPartnerOf(_mom).AndTheyAreTheParentsOf(_brother, _sister, _cat);
 
-            _us.ChildrenOf(_dad).ShouldEqual(_expectedChildren);
+            _us.ChildrenOf(_dad).ShouldBeEquivalentTo(_expectedChildren);
         }
     }
 }

@@ -5,7 +5,7 @@ using GenogramGenerator.Core.Writer;
 
 namespace GenogramGenerator.Tests
 {
-    public class FamilyWriterTests
+    public class FamilyWriterTestsExplicit
     {
         public void WriteToJson()
         {

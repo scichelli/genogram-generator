@@ -41,7 +41,7 @@ namespace GenogramGenerator.Tests
         public void FindSiblings()
         {
             var rosesSiblings = kennedy.SiblingsOf(rose);
-            rosesSiblings.ShouldEqual(new List<Person> { fdaughter2, fson1, fson2, fdaughter3, fson3 });
+            rosesSiblings.ShouldBeEquivalentTo(new List<Person> { fdaughter2, fson1, fson2, fdaughter3, fson3 });
         }
         
         public void FamilyMembersShouldBeAUniqueList()
@@ -52,13 +52,13 @@ namespace GenogramGenerator.Tests
         public void FindChildrenOfTwoParents()
         {
             var children = kennedy.ChildrenOf(new List<Person> { ethyl, robert });
-            children.ShouldEqual(new List<Person> { rdaughter1, rson1, rson2, rson3, rdaughter2, rson4, rdaugher3, rson5, rson6, rson7, rdaugher4 });
+            children.ShouldBeEquivalentTo(new List<Person> { rdaughter1, rson1, rson2, rson3, rdaughter2, rson4, rdaugher3, rson5, rson6, rson7, rdaugher4 });
         }
 
         public void FindChildrenOfOneParent()
         {
             var children = kennedy.ChildrenOf(robert);
-            children.ShouldEqual(new List<Person> { rdaughter1, rson1, rson2, rson3, rdaughter2, rson4, rdaugher3, rson5, rson6, rson7, rdaugher4 });
+            children.ShouldBeEquivalentTo(new List<Person> { rdaughter1, rson1, rson2, rson3, rdaughter2, rson4, rdaugher3, rson5, rson6, rson7, rdaugher4 });
         }
 
         public void AskingForTheChildrenOfPeopleWhoDidNotHaveChildrenTogetherShouldGiveEmptyList()
