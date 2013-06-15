@@ -16,9 +16,14 @@ namespace GenogramGenerator.Core
         {
         }
 
-        public int? Age(DateTime fromDate)
+        public int? Age(DateTime asOfDate)
         {
-            return _year == DateTime.MinValue ? (int?) null : fromDate.Year - _year.Year;
+            return _year == DateTime.MinValue ? (int?) null : asOfDate.Year - _year.Year;
+        }
+
+        public int? Age(Year asOfYear)
+        {
+            return Age(asOfYear._year);
         }
 
         public override string ToString()

@@ -8,6 +8,7 @@ namespace GenogramGenerator.Core
         public Family Family { get; set; }
         public string Name { get; set; }
         public Year BirthYear { get; set; }
+        public Year? DeathYear { get; set; }
 
         public Relationship Is { get { return Family.Add(this); } }
 
@@ -23,6 +24,11 @@ namespace GenogramGenerator.Core
         public override string ToString()
         {
             return Name;
+        }
+
+        public int? Age()
+        {
+            return BirthYear.Age(DeathYear ?? new Year(DateTime.Now));
         }
     }
 }

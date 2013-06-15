@@ -1,5 +1,4 @@
-﻿using System;
-using GenogramGenerator.Core;
+﻿using GenogramGenerator.Core;
 using Should;
 
 namespace GenogramGenerator.Tests
@@ -13,27 +12,22 @@ namespace GenogramGenerator.Tests
             _person.BirthYear.ToString().ShouldEqual(string.Empty);
         }
 
-        public void SetBirthYearWithADate()
+        public void UninitializedDeathShouldBeNull()
         {
-            _person.BirthYear = new Year(new DateTime(1941, 4, 28));
-            _person.BirthYear.ToString().ShouldEqual("1941");
+            _person.DeathYear.ShouldBeNull();
         }
 
-        public void SetBirthYearWithAYear()
+        public void AgeIfLivingShouldCalculateFromNow()
         {
-            _person.BirthYear = new Year(2001);
-            _person.BirthYear.ToString().ShouldEqual("2001");
+            _person.BirthYear = new Year(2010);
+            _person.Age().ShouldBeGreaterThan(2);
         }
 
-        public void FindAge()
+        public void AgeIfDeceasedShouldBeCalculatedFromDeathDate()
         {
-            _person.BirthYear = new Year(1985);
-            _person.BirthYear.Age(new DateTime(1995, 8, 25)).ShouldEqual(10);
-        }
-
-        public void UninitializedAgeShouldBeNull()
-        {
-            _person.BirthYear.Age(DateTime.Now).ShouldBeNull();
+            _person.BirthYear = new Year(1960);
+            _person.DeathYear = new Year(2000);
+            _person.Age().ShouldEqual(40);
         }
     }
 }
