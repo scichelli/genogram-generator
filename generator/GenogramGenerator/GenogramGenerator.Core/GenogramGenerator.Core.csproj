@@ -45,6 +45,7 @@
     <Compile Include="Relationship.cs" />
     <Compile Include="Writer\PersonDto.cs" />
     <Compile Include="Writer\RelationshipDto.cs" />
+    <Compile Include="Year.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
