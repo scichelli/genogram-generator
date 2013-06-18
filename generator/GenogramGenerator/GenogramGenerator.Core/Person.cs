@@ -9,6 +9,7 @@ namespace GenogramGenerator.Core
         public string Name { get; set; }
         public Year BirthYear { get; set; }
         public Year? DeathYear { get; set; }
+        public virtual Gender Gender { get; set; }
 
         public Relationship Is { get { return Family.Add(this); } }
 
@@ -30,5 +31,33 @@ namespace GenogramGenerator.Core
         {
             return BirthYear.Age(DeathYear ?? new Year(DateTime.Now));
         }
+    }
+
+    public class Man : Person
+    {
+        public override Gender Gender
+        {
+            get
+            {
+                return Gender.M;
+            }
+        }
+    }
+
+    public class Woman : Person
+    {
+        public override Gender Gender
+        {
+            get
+            {
+                return Gender.F;
+            }
+        }
+    }
+
+    public enum Gender
+    {
+        F,
+        M
     }
 }

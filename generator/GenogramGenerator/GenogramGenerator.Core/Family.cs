@@ -52,9 +52,18 @@ namespace GenogramGenerator.Core
 
         public Relationship Add(Person person)
         {
+            person.Family = this;
             var relationship = new Relationship { A = person };
             _relationships.Add(relationship);
             return relationship;
+        }
+
+        public void SetAsFamily(params Person[] people)
+        {
+            foreach (var person in people)
+            {
+                person.Family = this;
+            }
         }
     }
 }

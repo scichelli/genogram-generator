@@ -6,13 +6,13 @@ namespace GenogramGenerator.Core.Writer
 
         public RelationshipDto(Relationship relationship)
         {
-            A = new PersonDto(relationship.A);
-            B = new PersonDto(relationship.B);
+            A = relationship.A.Id.ToString();
+            B = relationship.B.Id.ToString();
             Type = relationship.Type.ToString();
         }
 
-        public PersonDto A { get; set; }
-        public PersonDto B { get; set; }
+        public string A { get; set; }
+        public string B { get; set; }
         public string Type { get; set; }
     }
 }
