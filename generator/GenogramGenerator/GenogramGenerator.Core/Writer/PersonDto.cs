@@ -8,7 +8,7 @@ namespace GenogramGenerator.Core.Writer
         {
             Id = person.Id.ToString();
             Name = person.Name;
-            Gender = person.Gender.ToString();
+            Gender = person.Sex.ToString();
             XPosition = person.XPosition.ToString();
             Generation = person.Generation.ToString();
             DistanceToPrimaryLineage = person.DistanceToPrimaryLineage.ToString();

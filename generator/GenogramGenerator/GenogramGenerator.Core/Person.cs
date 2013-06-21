@@ -9,7 +9,7 @@ namespace GenogramGenerator.Core
         public string Name { get; set; }
         public Year BirthYear { get; set; }
         public Year? DeathYear { get; set; }
-        public virtual Gender Gender { get; set; }
+        public virtual Sex Sex { get; set; }
 
         public Relationship Is { get { return Family.Add(this); } }
 
@@ -35,27 +35,27 @@ namespace GenogramGenerator.Core
 
     public class Man : Person
     {
-        public override Gender Gender
+        public override Sex Sex
         {
             get
             {
-                return Gender.M;
+                return Sex.M;
             }
         }
     }
 
     public class Woman : Person
     {
-        public override Gender Gender
+        public override Sex Sex
         {
             get
             {
-                return Gender.F;
+                return Sex.F;
             }
         }
     }
 
-    public enum Gender
+    public enum Sex
     {
         F,
         M
