@@ -15,7 +15,7 @@
 <script type="text/javascript">
 
 var width = 1400, 
-	height = 500;
+	height = 600;
 
 var svg = d3.select("body").append("svg")
 	.attr("width", width)
@@ -23,18 +23,18 @@ var svg = d3.select("body").append("svg")
   .append("g");
 
 svg.selectAll("circle")
-	.data(people.filter(function(person, index, people) { return person.gender === "F"; }))
+	.data(people.filter(function(person, index, people) { return person.Gender === "F"; }))
   .enter().append("circle")
-	.attr("cx", function(d) { return d.position; })
-	.attr("cy", function(d) { return ((d.generation + 1) * 100); })
+	.attr("cx", function(d) { return d.XPosition; })
+	.attr("cy", function(d) { return ((d.Generation) * 100); })
 	.attr("r", 10)
-	.attr("class", function(d) { return d.medical; });
+	.attr("class", function(d) { return d.Medical; });
 
 svg.selectAll("rect")
-	.data(people.filter(function(person, index, people) { return person.gender === "M"; }))
+	.data(people.filter(function(person, index, people) { return person.Gender === "M"; }))
   .enter().append("rect")
-	.attr("x", function(d) { return d.position; })
-	.attr("y", function(d) { return ((d.generation + 1) * 100); })
+	.attr("x", function(d) { return d.XPosition; })
+	.attr("y", function(d) { return ((d.Generation) * 100); })
 	.attr("width", 20)
 	.attr("height", 20);
 
@@ -42,9 +42,9 @@ svg.append("g").selectAll("path")
 	.data(relationships)
   .enter().append("path")
 	.attr("d", function(r) {
-		var fromNode = people.filter(function(person, index, people) { return person.name === r.a; })[0];
-		var toNode = people.filter(function(person, index, people) { return person.name === r.b; })[0];
-		return "M" + fromNode.position + "," + ((fromNode.generation + 1) * 100) + " L" + toNode.position + "," + ((toNode.generation + 1) * 100);
+		var fromNode = people.filter(function(person, index, people) { return person.Id === r.A; })[0];
+		var toNode = people.filter(function(person, index, people) { return person.Id === r.B; })[0];
+		return "M" + fromNode.XPosition + "," + ((fromNode.Generation) * 100) + " L" + toNode.XPosition + "," + ((toNode.Generation) * 100);
 	});
 </script>
 </body>
