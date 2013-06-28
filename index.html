@@ -43,7 +43,7 @@ svg.append("g").selectAll("path")
   .enter().append("path")
 	.attr("d", function(r) {
 		var fromNode = people.filter(function(person, index, people) { return person.Id === r.B; })[0];
-		return "M" + fromNode.XPosition + "," + fromNode.YPosition + " L" + fromNode.XPosition + "," + (fromNode.YPosition - 50);
+		return "M" + fromNode.XPosition + "," + (fromNode.YPosition -10) + " L" + fromNode.XPosition + "," + (fromNode.YPosition - 50);
 	});
 
 svg.append("g").selectAll("path")
@@ -52,10 +52,10 @@ svg.append("g").selectAll("path")
 	.attr("d", function(r) {
 		var fromNode = people.filter(function(person, index, people) { return person.Id === r.A; })[0];
 		var toNode = people.filter(function(person, index, people) { return person.Id === r.B; })[0];
-		return "M" + fromNode.XPosition + "," + fromNode.YPosition 
-			+ " v" + 50 
+		return "M" + fromNode.XPosition + "," + (10 + (1 * fromNode.YPosition))
+			+ " v" + 40 
 			+ " H" + toNode.XPosition
-			+ " v" + (-50);
+			+ " v" + (-40);
 	});
 </script>
 </body>
