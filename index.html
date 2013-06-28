@@ -39,12 +39,23 @@ svg.selectAll("rect")
 	.attr("height", 20);
 
 svg.append("g").selectAll("path")
-	.data(relationships)
+	.data(relationships.filter(function(rel, index, relationships) { return rel.Type === "Parent"; }))
+  .enter().append("path")
+	.attr("d", function(r) {
+		var fromNode = people.filter(function(person, index, people) { return person.Id === r.B; })[0];
+		return "M" + fromNode.XPosition + "," + fromNode.YPosition + " L" + fromNode.XPosition + "," + (fromNode.YPosition - 50);
+	});
+
+svg.append("g").selectAll("path")
+	.data(relationships.filter(function(rel, index, relationships) { return rel.Type === "Spouse"; }))
   .enter().append("path")
 	.attr("d", function(r) {
 		var fromNode = people.filter(function(person, index, people) { return person.Id === r.A; })[0];
 		var toNode = people.filter(function(person, index, people) { return person.Id === r.B; })[0];
-		return "M" + fromNode.XPosition + "," + fromNode.YPosition + " L" + toNode.XPosition + "," + toNode.YPosition;
+		return "M" + fromNode.XPosition + "," + fromNode.YPosition 
+			+ " v" + 50 
+			+ " H" + toNode.XPosition
+			+ " v" + (-50);
 	});
 </script>
 </body>
