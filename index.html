@@ -26,7 +26,7 @@ svg.selectAll("circle")
 	.data(people.filter(function(person, index, people) { return person.Gender === "F"; }))
   .enter().append("circle")
 	.attr("cx", function(d) { return d.XPosition; })
-	.attr("cy", function(d) { return ((d.Generation) * 100); })
+	.attr("cy", function(d) { return d.YPosition; })
 	.attr("r", 10)
 	.attr("class", function(d) { return d.Medical; });
 
@@ -34,7 +34,7 @@ svg.selectAll("rect")
 	.data(people.filter(function(person, index, people) { return person.Gender === "M"; }))
   .enter().append("rect")
 	.attr("x", function(d) { return d.XPosition; })
-	.attr("y", function(d) { return ((d.Generation) * 100); })
+	.attr("y", function(d) { return d.YPosition; })
 	.attr("width", 20)
 	.attr("height", 20);
 
@@ -44,7 +44,7 @@ svg.append("g").selectAll("path")
 	.attr("d", function(r) {
 		var fromNode = people.filter(function(person, index, people) { return person.Id === r.A; })[0];
 		var toNode = people.filter(function(person, index, people) { return person.Id === r.B; })[0];
-		return "M" + fromNode.XPosition + "," + ((fromNode.Generation) * 100) + " L" + toNode.XPosition + "," + ((toNode.Generation) * 100);
+		return "M" + fromNode.XPosition + "," + fromNode.YPosition + " L" + toNode.XPosition + "," + toNode.YPosition;
 	});
 </script>
 </body>
