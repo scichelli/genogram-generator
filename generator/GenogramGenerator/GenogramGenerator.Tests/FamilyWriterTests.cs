@@ -26,6 +26,20 @@ namespace GenogramGenerator.Tests
                     DistanceToPrimaryLineage = 1,
                     XPosition = 700
                 };
+            var sister = new Woman
+                {
+                    Name = "Sister Person",
+                    Generation = 1,
+                    DistanceToPrimaryLineage = 2,
+                    XPosition = 525
+                };
+            var brother = new Man
+                {
+                    Name = "Brother Person",
+                    Generation = 1,
+                    DistanceToPrimaryLineage = 2,
+                    XPosition = 850
+                };
             var mom = new Woman
                 {
                     Name = "Mother Person",
@@ -68,8 +82,8 @@ namespace GenogramGenerator.Tests
                     DistanceToPrimaryLineage = 1,
                     XPosition = 175
                 };
-            us.SetAsFamily(me, mom, dad, momsdad, momsmom, dadsdad, dadsmom);
-            mom.Is.MarriedTo(dad).AndTheyAreTheParentsOf(me);
+            us.SetAsFamily(me, sister, brother, mom, dad, momsdad, momsmom, dadsdad, dadsmom);
+            mom.Is.MarriedTo(dad).AndTheyAreTheParentsOf(me, sister, brother);
             momsdad.Is.MarriedTo(momsmom).AndTheyAreTheParentsOf(mom);
             dadsmom.Is.MarriedTo(dadsdad).AndTheyAreTheParentsOf(dad);
 
