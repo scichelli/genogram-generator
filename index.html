@@ -25,16 +25,16 @@ var svg = d3.select("body").append("svg")
 svg.selectAll("circle")
 	.data(people.filter(function(person, index, people) { return person.Gender === "F"; }))
   .enter().append("circle")
-	.attr("cx", function(d) { return d.XPosition; })
-	.attr("cy", function(d) { return d.YPosition; })
+	.attr("cx", function(d) { return circX(d); })
+	.attr("cy", function(d) { return circY(d); })
 	.attr("r", 11)
 	.attr("class", function(d) { return d.Medical; });
 
 svg.selectAll("rect")
 	.data(people.filter(function(person, index, people) { return person.Gender === "M"; }))
   .enter().append("rect")
-	.attr("x", function(d) { return (d.XPosition - 10); })
-	.attr("y", function(d) { return (d.YPosition- 10); })
+	.attr("x", function(d) { return rectX(d); })
+	.attr("y", function(d) { return rectY(d); })
 	.attr("width", 20)
 	.attr("height", 20);
 
@@ -42,7 +42,7 @@ svg.append("g").selectAll("path")
 	.data(relationships.filter(function(rel, index, relationships) { return rel.Type === "Parent"; }))
   .enter().append("path")
 	.attr("d", function(r) {
-		var fromNode = people.filter(function(person, index, people) { return person.Id === r.B; })[0];
+		var fromNode = findPersonById(r.B);
 		return "M" + fromNode.XPosition + "," + (fromNode.YPosition -10) + " L" + fromNode.XPosition + "," + (fromNode.YPosition - 50);
 	});
 
@@ -50,13 +50,33 @@ svg.append("g").selectAll("path")
 	.data(relationships.filter(function(rel, index, relationships) { return rel.Type === "Spouse"; }))
   .enter().append("path")
 	.attr("d", function(r) {
-		var fromNode = people.filter(function(person, index, people) { return person.Id === r.A; })[0];
-		var toNode = people.filter(function(person, index, people) { return person.Id === r.B; })[0];
+		var fromNode = findPersonById(r.A);
+		var toNode = findPersonById(r.B);
 		return "M" + fromNode.XPosition + "," + (10 + (1 * fromNode.YPosition))
 			+ " v" + 40 
 			+ " H" + toNode.XPosition
 			+ " v" + (-40);
 	});
+	
+function findPersonById(id) {
+	return people.filter(function(person, index, people) { return person.Id === id; })[0];
+}
+
+function rectX(person) {
+	return person.XPosition - 10;
+}
+
+function rectY(person) {
+	return person.YPosition - 10;
+}
+
+function circX(person) {
+	return person.XPosition;
+}
+
+function circY(person) {
+	return person.YPosition;
+}
 </script>
 </body>
 </html>
