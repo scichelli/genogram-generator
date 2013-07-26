@@ -15,7 +15,8 @@
 <script type="text/javascript">
 
 var width = 1400, 
-	height = 600;
+	height = 600,
+	personSize = 20;
 
 var svg = d3.select("body").append("svg")
 	.attr("width", width)
@@ -27,7 +28,7 @@ svg.selectAll("circle")
   .enter().append("circle")
 	.attr("cx", function(d) { return circX(d); })
 	.attr("cy", function(d) { return circY(d); })
-	.attr("r", 11)
+	.attr("r", (personSize / 2) + 1)
 	.attr("class", function(d) { return d.Medical; });
 
 svg.selectAll("rect")
@@ -35,15 +36,15 @@ svg.selectAll("rect")
   .enter().append("rect")
 	.attr("x", function(d) { return rectX(d); })
 	.attr("y", function(d) { return rectY(d); })
-	.attr("width", 20)
-	.attr("height", 20);
+	.attr("width", personSize)
+	.attr("height", personSize);
 
 svg.append("g").selectAll("path")
 	.data(relationships.filter(function(rel, index, relationships) { return rel.Type === "Parent"; }))
   .enter().append("path")
 	.attr("d", function(r) {
 		var fromNode = findPersonById(r.B);
-		return "M" + fromNode.XPosition + "," + (fromNode.YPosition -10) + " L" + fromNode.XPosition + "," + (fromNode.YPosition - 50);
+		return "M" + fromNode.XPosition + "," + (fromNode.YPosition - (personSize / 2)) + " L" + fromNode.XPosition + "," + (fromNode.YPosition - ((personSize * 2) + (personSize / 2)));
 	});
 
 svg.append("g").selectAll("path")
@@ -52,10 +53,10 @@ svg.append("g").selectAll("path")
 	.attr("d", function(r) {
 		var fromNode = findPersonById(r.A);
 		var toNode = findPersonById(r.B);
-		return "M" + fromNode.XPosition + "," + (10 + (1 * fromNode.YPosition))
-			+ " v" + 40 
+		return "M" + fromNode.XPosition + "," + ((personSize / 2) + (1 * fromNode.YPosition))
+			+ " v" + (personSize * 2) 
 			+ " H" + toNode.XPosition
-			+ " v" + (-40);
+			+ " v" + (-(personSize * 2));
 	});
 	
 function findPersonById(id) {
@@ -63,11 +64,11 @@ function findPersonById(id) {
 }
 
 function rectX(person) {
-	return person.XPosition - 10;
+	return person.XPosition - (personSize / 2);
 }
 
 function rectY(person) {
-	return person.YPosition - 10;
+	return person.YPosition - (personSize / 2);
 }
 
 function circX(person) {
