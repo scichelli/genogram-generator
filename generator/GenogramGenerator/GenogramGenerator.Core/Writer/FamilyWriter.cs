@@ -19,8 +19,10 @@ namespace GenogramGenerator.Core.Writer
             var writer = new StreamWriter(_stream);
             writer.Write("var people = ");
             writer.WriteLine(JsonConvert.SerializeObject(_flattener.Members()));
-            writer.Write("var relationships = ");
-            writer.WriteLine(JsonConvert.SerializeObject(_flattener.Relationships()));
+            writer.Write("var parents = ");
+            writer.WriteLine(JsonConvert.SerializeObject(_flattener.Parents()));
+            writer.Write("var peers = ");
+            writer.WriteLine(JsonConvert.SerializeObject(_flattener.Peers()));
             writer.Flush();
         }
     }

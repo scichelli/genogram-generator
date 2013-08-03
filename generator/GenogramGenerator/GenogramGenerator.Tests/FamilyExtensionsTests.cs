@@ -45,5 +45,14 @@ namespace GenogramGenerator.Tests
 
             _us.ChildrenOf(_dad).ShouldBeEquivalentTo(_expectedChildren);
         }
+
+        public void VerifyRelationshipTypeIsOneOfACollection()
+        {
+            RelationshipType.Parent.IsOneOf(RelationshipType.Divorced, RelationshipType.Parent, RelationshipType.Romance).ShouldBeTrue("Should find Type in collection that contains Type");
+
+            RelationshipType.Romance.IsOneOf(RelationshipType.Divorced, RelationshipType.Spouse).ShouldBeFalse("Should report that Type is not in collection that does not contain it");
+
+            RelationshipType.Parent.IsOneOf().ShouldBeFalse("Should report that Type is not in empty collection");
+        }
     }
 }

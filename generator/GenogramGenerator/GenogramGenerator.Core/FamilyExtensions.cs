@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GenogramGenerator.Core
 {
@@ -13,6 +14,11 @@ namespace GenogramGenerator.Core
                     parent.Is.TheParentOf(child);
                 }
             }
+        }
+
+        public static bool IsOneOf(this RelationshipType type, params RelationshipType[] relationshipTypes)
+        {
+            return relationshipTypes.Any(relationshipType => relationshipType == type);
         }
     }
 }

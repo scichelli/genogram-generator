@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace GenogramGenerator.Core.Writer
@@ -19,7 +20,24 @@ namespace GenogramGenerator.Core.Writer
 
         public IEnumerable<RelationshipDto> Relationships()
         {
-            return _family.Relationships.Select(r => new RelationshipDto(r));
+            return RelationshipsByType(r => true);
+        }
+
+        public IEnumerable<RelationshipDto> Parents()
+        {
+            return RelationshipsByType(r => r.Type == RelationshipType.Parent);
+        }
+
+        public IEnumerable<RelationshipDto> Peers()
+        {
+            return RelationshipsByType(r =>
+                                       r.Type.IsOneOf(RelationshipType.Spouse, RelationshipType.Romance,
+                                                      RelationshipType.Divorced));
+        }
+
+        private IEnumerable<RelationshipDto> RelationshipsByType(Func<Relationship, bool> relationshipSelector)
+        {
+            return _family.Relationships.Where(relationshipSelector).Select(r => new RelationshipDto(r));
         }
     }
 }
