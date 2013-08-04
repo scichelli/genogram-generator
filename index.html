@@ -28,7 +28,7 @@ svg.selectAll("circle")
   .enter().append("circle")
 	.attr("cx", function(d) { return circX(d); })
 	.attr("cy", function(d) { return circY(d); })
-	.attr("r", (personSize / 2) + 1)
+	.attr("r", function (d) { return findCircleSize(d); })
 	.attr("class", function(d) { return d.Medical; });
 
 svg.selectAll("rect")
@@ -36,8 +36,8 @@ svg.selectAll("rect")
   .enter().append("rect")
 	.attr("x", function(d) { return rectX(d); })
 	.attr("y", function(d) { return rectY(d); })
-	.attr("width", personSize)
-	.attr("height", personSize);
+	.attr("width", function (d) { return findRectangleSize(d); })
+	.attr("height", function (d) { return findRectangleSize(d); });
 
 svg.append("g").selectAll("path")
 	.data(parents)
@@ -53,10 +53,11 @@ svg.append("g").selectAll("path")
 	.attr("d", function(r) {
 		var fromNode = findPersonById(r.A);
 		var toNode = findPersonById(r.B);
+		var verticalTravel = findVerticalTravel(fromNode, toNode);
 		return "M" + fromNode.XPosition + "," + ((personSize / 2) + (1 * fromNode.YPosition))
-			+ " v" + (personSize * 2) 
+			+ " v" + (verticalTravel) 
 			+ " H" + toNode.XPosition
-			+ " v" + (-(personSize * 2));
+			+ " v" + (-(verticalTravel));
 	});
 	
 function findPersonById(id) {
@@ -78,6 +79,31 @@ function circX(person) {
 function circY(person) {
 	return person.YPosition;
 }
+
+function findCircleSize(person) {
+    return findIconSize(((personSize / 2) + 1), person);
+}
+
+function findRectangleSize(person) {
+    return findIconSize(personSize, person);
+}
+
+function findIconSize(startingSize, person) {
+    var size = startingSize;
+    for (var i = 2; i < person.DistanceToPrimaryLineage; i++) {
+        size = size * 0.8;
+    }
+    return size;
+}
+
+function findVerticalTravel(fromNode, toNode) {
+    var decreaser = 0;
+    if (fromNode.DistanceToPrimaryLineage > 2 || toNode.DistanceToPrimaryLineage > 2) {
+        decreaser = personSize;
+    }
+    return (personSize * 2) - decreaser;
+}
+
 </script>
 </body>
 </html>

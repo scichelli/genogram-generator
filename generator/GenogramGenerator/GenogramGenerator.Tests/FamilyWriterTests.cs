@@ -54,6 +54,13 @@ namespace GenogramGenerator.Tests
                     DistanceToPrimaryLineage = 2,
                     XPosition = 963
                 };
+            var uncleswife = new Woman
+                {
+                    Name = "Uncle's Wife",
+                    Generation = 2,
+                    DistanceToPrimaryLineage = 3,
+                    XPosition = 1006
+                };
             var dad = new Man
                 {
                     Name = "Father Person",
@@ -96,11 +103,11 @@ namespace GenogramGenerator.Tests
                     DistanceToPrimaryLineage = 1,
                     XPosition = 175
                 };
-            us.SetAsFamily(me, sister, brother, mom, dad, momsdad, momsmom, dadsdad, dadsmom, uncle, aunt);
+            us.SetAsFamily(me, sister, brother, mom, dad, momsdad, momsmom, dadsdad, dadsmom, uncle, aunt, uncleswife);
             mom.Is.MarriedTo(dad).AndTheyAreTheParentsOf(me, sister, brother);
             momsdad.Is.MarriedTo(momsmom).AndTheyAreTheParentsOf(mom, uncle);
             dadsmom.Is.MarriedTo(dadsdad).AndTheyAreTheParentsOf(dad, aunt);
-
+            uncle.Is.MarriedTo(uncleswife);
             DebugWrite(us);
         }
 
