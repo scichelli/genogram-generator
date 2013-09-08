@@ -5,25 +5,23 @@ namespace GenogramGenerator.Core.Writer
 {
     public class FamilyWriter
     {
-        private readonly Stream _stream;
+        private readonly TextWriter _writer;
         private readonly Flattener _flattener;
 
-        public FamilyWriter(Family family, Stream stream)
+        public FamilyWriter(Family family, TextWriter writer)
         {
-            _stream = stream;
+            _writer = writer;
             _flattener = new Flattener(family);
         }
 
         public void Write()
         {
-            var writer = new StreamWriter(_stream);
-            writer.Write("var people = ");
-            writer.WriteLine(JsonConvert.SerializeObject(_flattener.Members()));
-            writer.Write("var parents = ");
-            writer.WriteLine(JsonConvert.SerializeObject(_flattener.Parents()));
-            writer.Write("var peers = ");
-            writer.WriteLine(JsonConvert.SerializeObject(_flattener.Peers()));
-            writer.Flush();
+            _writer.Write("var people = ");
+            _writer.WriteLine(JsonConvert.SerializeObject(_flattener.Members()));
+            _writer.Write("var parents = ");
+            _writer.WriteLine(JsonConvert.SerializeObject(_flattener.Parents()));
+            _writer.Write("var peers = ");
+            _writer.WriteLine(JsonConvert.SerializeObject(_flattener.Peers()));
         }
     }
 }

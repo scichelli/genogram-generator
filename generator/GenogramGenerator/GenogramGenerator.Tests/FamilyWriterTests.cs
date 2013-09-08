@@ -115,12 +115,15 @@ namespace GenogramGenerator.Tests
         {
             using (var stream = new MemoryStream())
             {
-                new FamilyWriter(family, stream).Write();
+                var writer = new StreamWriter(stream);
+                new FamilyWriter(family, writer).Write();
+                writer.Flush();
                 stream.Position = 0;
                 using (var reader = new StreamReader(stream))
                 {
                     Debug.Write(reader.ReadToEnd());
                 }
+                writer.Dispose();
             }
         }
     }
