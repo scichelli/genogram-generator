@@ -1,1 +1,0 @@
-.\generator\GenogramGenerator\GenogramGenerator.Console\bin\Debug\geno.exe
